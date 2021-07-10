@@ -19,8 +19,6 @@ const authentications = require('./api/authentications');
 const AuthenticationsService = require('./services/postgres/AuthenticationsService');
 const TokenManager = require('./tokenize/TokenManager');
 const AuthenticationsValidator = require('./validator/authentications');
-const { prototype } = require('./exceptions/ClientError');
-
 
 const init = async () => {
 
@@ -55,7 +53,7 @@ server.auth.strategy('notesapp_jwt', 'jwt', {
   },
   validate: (artifacts) => ({
     isValid: true,
-    Credential: {
+    credentials: {
       id: artifacts.decoded.payload.id,
     },
   }),
